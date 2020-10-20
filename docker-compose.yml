@@ -7,6 +7,9 @@ services:
      volumes:
        - db_data:/var/lib/mysql    
      restart: always
+     environment:
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
      env_file:
        - ./env.dev
 
@@ -32,6 +35,8 @@ services:
      ports:
        - "3000:3000"
      user: "104"
+     environment:
+       GF_SERVER_ROOT_URL: "%(protocol)s://%(domain)s:/grafana"
 
    nginx:
     image: nginx:latest
